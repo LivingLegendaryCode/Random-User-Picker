@@ -1,0 +1,14 @@
+{
+  "name": "random-user-picker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "An Express app that selects three random sample users and sorts them alphabetically.",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "node-fetch": "^3.3.2"
+  }
+}
