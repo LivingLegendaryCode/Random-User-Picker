@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Random User Picker</title>
+<style>body{font:18px system-ui;background:#101827;color:#eef2ff;max-width:850px;margin:70px auto;padding:24px}h1{font-size:44px}button{background:#8ee4cf;color:#101827;border:0;border-radius:10px;padding:14px 22px;font:inherit;cursor:pointer}#users{display:grid;gap:16px;margin-top:30px}article{background:#1e293b;border:1px solid #334155;border-radius:14px;padding:22px}h2{margin:0 0 12px}p{line-height:1.6}small{color:#a5b4cc}</style></head>
+<body><small>JARRELL WARREN · JAVASCRIPT PROJECT</small><h1>Random User Picker</h1><p>Discover three random sample users, sorted from A to Z.</p><button id="pick">Pick three users</button><p id="status" role="status" aria-live="polite"></p><div id="users"></div><p><small>Sample data provided by JSONPlaceholder.</small></p>
+<script>
+const button=document.querySelector('#pick'),status=document.querySelector('#status'),list=document.querySelector('#users');
+button.addEventListener('click',async()=>{button.disabled=true;status.textContent='Loading users…';list.replaceChildren();try{const response=await fetch('/random_users');if(!response.ok)throw new Error('Unable to load users. Please try again.');const users=await response.json();for(const user of users){const card=document.createElement('article');for(const [tag,value] of [['h2',user.name],['p',user.email],['small',user.company.name]]){const element=document.createElement(tag);element.textContent=value;card.append(element);}list.append(card);}status.textContent='Three users selected.';}catch(error){status.textContent=error.message;}finally{button.disabled=false;}});
+</script></body></html>
